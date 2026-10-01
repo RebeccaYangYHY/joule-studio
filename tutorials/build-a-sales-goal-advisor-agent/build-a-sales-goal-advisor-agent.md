@@ -76,7 +76,7 @@ In this step, you select Agent as the solution type and describe what you want t
 
 1. Open **Joule Studio**.
 
-![Open Joule Studio](bis1.png)
+![Open Joule Studio](bis1.1.png)
 
 2. Select **Create** to open the **Create Agent** dialog.
 
@@ -93,8 +93,6 @@ In this step, you select Agent as the solution type and describe what you want t
    ```
 
 5. Select **Quick Create** to skip clarifying questions and move directly to solution building. This adds *Fast Track* to the intent statement.
-    
-> Even with **Quick Create**, Joule will still ask you to confirm Business Goals & Success Criteria.
 
 ![Create Agent](bis2.png)
 
@@ -103,6 +101,8 @@ In this step, you select Agent as the solution type and describe what you want t
 **Writing an effective intent statement**
 
 A strong intent statement covers four dimensions: what the agent does, what data it works with, what decisions it supports, and what guardrails it must respect. This one covers all four - giving Joule Studio enough context to derive an accurate architecture without any technical input. If the generated interpretation doesn't match your expectations, refine the statement here before continuing.
+
+> Even with **Quick Create**, Joule will still ask you to confirm Business Goals & Success Criteria.
 
 7. Confirm the Business Goals.
 
@@ -135,7 +135,7 @@ Even when **Quick Create** is selected, Joule will collect the mandatory Busines
 
 ### Product Requirements Document
 
-In the **Requirements** phase, Joule Studio generates a **Product Requirements Document (PRD)**. This is an important document that your are expected to review each section carefully. This document defines the agent's operational boundaries and becomes the source of truth for all subsequent phases.
+In the **Requirements** phase, Joule Studio generates a **Product Requirements Document (PRD)**. This is an important document that you are expected to review each section carefully. This document defines the agent's operational boundaries and becomes the source of truth for all subsequent phases.
 
 1. Wait until the requirements have been generated.
 
@@ -147,7 +147,7 @@ In the **Requirements** phase, Joule Studio generates a **Product Requirements D
 
 ![PRD File](bis8.png)
 
-The Business Context section maps your intent to the actual business process - it identifies personas (e.g., sales rep, manager), pain points, success metrics, and guardrails. Review this section carefully: it defines the operational boundaries the agent will respect throughout all subsequent phases.
+The PRD maps your intent to the actual business process. It covers the full scope of what the agent needs to do: identifying personas (e.g., sales rep, manager), pain points, success metrics, and guardrails. Review this section carefully: it defines the operational boundaries the agent will respect throughout all subsequent phases.
 
 **Product Purpose and Value Proposition**
 
@@ -225,7 +225,7 @@ Select MCP Servers in the agent definition to see the servers that were configur
 
 - They connect to the SAP SuccessFactors Goal Plan OData API and Employee Profile OData API allowing the agent to read the rep's existing goals and write newly confirmed goals back to SuccessFactors and to retrieve the rep's profile at the start of each session.
 
-![MCP Servers](bis15.png)
+![MCP Servers](bis15.1.png)
   
 No configuration is required: Joule Studio generated and wired up all servers from the specification.
 
@@ -247,7 +247,7 @@ The **Testing** phase is triggered automatically by Joule once the solution buil
 
 4. In the chat field, enter a prompt that does not require live tool calls. For example: What are you responsible for? The agent will respond with a description of its capabilities without needing to connect to CRM or SuccessFactors.
 
-![Testing](bis18.png)
+![Testing](bis18.1.png)
 
 ![Testing](bis19.png)
 
@@ -265,8 +265,6 @@ Joule Studio packages the agent and deploys it to the **SAP managed service** on
 
 Your agent is now operational.
 
-*Screenshot of successful deployment result (the deploy_result.json populated state, or the Manage tab showing the live deployment) with a caption to include*
-
 > If you are working in a team or want to version-control the generated code, Joule Studio supports GitHub sync. You can find this option under **Actions** in the top bar.
 
 > For governance reasons, deployment to production is not done from within Joule Studio.
@@ -279,7 +277,6 @@ Once deployed, agents are automatically discoverable through Joule. When users a
 
 Once deployed, switch to the **Manage** tab in Joule Studio to access governance and monitoring. Here you can view runtime status, active deployments, usage metrics, and audit logs.
 
-*Screenshot of the Manage tab to include*
 
 ### Summary
 
