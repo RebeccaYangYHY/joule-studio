@@ -247,7 +247,7 @@ During this phase, Joule Studio:
 
 **Reviewing the Agent Definition**
 
-1. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
+3. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
 
 - The LLM configuration (e.g., sap/anthropic--claude-4.5-sonnet)
 - Agent Configurations: circuit-breaker threshold, thread TTL, summarization trigger
