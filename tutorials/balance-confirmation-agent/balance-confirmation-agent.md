@@ -113,7 +113,7 @@ Select the solution type you want to create, in this case Agent, and describe wh
 
 Even when **Quick Create** is selected, Joule will collect the mandatory Business Goals & Success Criteria before completing the intent analysis. Answer any additional clarifying questions to the best of your knowledge - these inputs help Joule define the success metrics and tailor the generated PRD.
 
-![Business value](02-intent-clarification-questions.png)
+![Business value](02bis-intent-clarification-questions.png)
 
 ### Review the Intent
 
@@ -121,7 +121,7 @@ Even when **Quick Create** is selected, Joule will collect the mandatory Busines
 
 2. Under the **Intent Summary** tab, you may review the complete summary. This shows how Joule Studio interpreted your input.
 
-![Intent processing](01-intent-summary.png)
+![Intent processing](01bis-intent-summary.png)
 
 3. Verify that this matches your intent. If the summary is missing an element or describes a different scope, you can refine the intent statement and re-submit.
 
@@ -202,7 +202,7 @@ In the **Specification** phase, Joule Studio translates the PRD into a structure
 
 Wait for the specification generation to complete.  Review the summary of what has been created so far by choosing **Specification** under **Solution Progress**:
 
-![Inspect Specification](04-specifications.png)
+![Inspect Specification](04bis-specifications.png)
 
 > **Architecture note:** Unlike agents that bundle all SAP API access inside a single component, the Balance Confirmation Agent uses **separate MCP servers** for each SAP OData API it consumes. This is the standard pattern when an agent needs to call multiple distinct SAP APIs - each server wraps one API and exposes it to the agent in a structured, LLM-interpretable format.
 
@@ -230,7 +230,7 @@ In the **Solution** phase, Joule Studio executes the specification and generates
 
 2. Wait for the solution generation to complete before proceeding. You can find the agent under **Solution Artifacts**.
 
-![Generated solution](05-solution-artifacts.png)
+![Generated solution](05bis-solution-artifacts.png)
 
 During this phase, Joule Studio:
 
@@ -252,7 +252,7 @@ During this phase, Joule Studio:
 
 4. In the **Evaluation** section you can generate evaluation scenarios for this agent based on your intent.
 
-![Evaluation ](05-evaluation.png)
+![Evaluation ](05bis-evaluation.png)
 
 5. To see the generated Python code, move to the pro-code (File tree) view.
 
