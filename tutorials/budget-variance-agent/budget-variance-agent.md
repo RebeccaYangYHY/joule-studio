@@ -23,7 +23,7 @@ parser: v2
 - How to identify a real-world finance automation use case suitable for a Joule Agent
 - How to write an effective **intent statement** for an agent
 - How to review and validate the assets created, including the generated **Product Requirements Document (PRD)**
-- How to deploy a production-ready Joule Agent to the SAP managed runtime service
+- How to deploy a production-ready Joule Agent to the SAP managed service
 
 
 ## Intro
@@ -76,7 +76,7 @@ The first phase in Joule Studio is **Intent**. You describe what the agent shoul
     <!-- border -->
     ![Open Joule Studio](1.png)
 
-2. Select **Create** to open the Create Agent dialog.
+2. Select **Create** to open the **Create Agent** dialog.
 
 
 3. Enter the agent name:
@@ -115,7 +115,7 @@ The first phase in Joule Studio is **Intent**. You describe what the agent shoul
     <!-- border -->
     ![Confirm Business Goals](3.png)
 
-    Even when Quick Create is selected, Joule will collect the mandatory Business Goals & Success Criteria before completing the intent analysis. Answer any additional clarifying questions to the best of your knowledge - these inputs help Joule define the success metrics and tailor the generated PRD.
+    Even when **Quick Create** is selected, Joule will collect the mandatory Business Goals & Success Criteria before completing the intent analysis. Answer any additional clarifying questions to the best of your knowledge - these inputs help Joule define the success metrics and tailor the generated PRD.
 
 
 
@@ -133,10 +133,10 @@ The first phase in Joule Studio is **Intent**. You describe what the agent shoul
 2. Verify that this matches your intent. If the summary is missing an element or describes a different scope, you can refine the intent statement and resubmit. 
 
 
-3. You can find the intent.md file under File tree panel.
+3. You can find the intent.md file under **File tree** panel.
 
     <!-- border -->
-    ![Intent](21.png)
+    ![Intent file](21.png)
 
 
 3. Scroll down to the Fit Gap Analysis and see what Joule has identified. Then you can scroll down to the Recommended Solution. It describes a Python-based AI agent that uses the Agent-to-Agent (A2A) and what it should be able to do.
@@ -162,7 +162,7 @@ In the **Requirements** phase, Joule Studio generates a **Product Requirements D
 2. To access the raw Markdown file, move to the File tree panel - this is the code view of the same document.
 
     <!-- border -->
-    ![Product Requirements Document](23.png)
+    ![PRD file](23.png)
 
 The Business Context section maps your intent to the actual business process - it identifies personas (e.g., sales rep, manager), pain points, success metrics, and guardrails. Review this section carefully: it defines the operational boundaries the agent will respect throughout all subsequent phases.
 
@@ -217,18 +217,18 @@ In the **Specification** phase, Joule Studio translates the PRD into a generated
 1. In the **Solution** phase, Joule Studio executes the specification and generates the complete, runnable solution.
 
 
-1. Once you have reviewed the specification, type **Build the solution** in the message window to trigger solution generation. Wait for the solution generation to complete before proceeding.
+2. Once you have reviewed the specification, type **Build the solution** in the message window to trigger solution generation. Wait for the solution generation to complete before proceeding.
 
     <!-- border -->
-    ![Build](10.png)
+    ![Build the solution](10.png)
 
-2. Once ready, you can find the agent under **Preview**.
+3. Once ready, you can find the agent under **Preview**.
 
     <!-- border -->
     ![Preview](40.png)
 
 
-3. Reviewing the Agent Definition. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
+4. Reviewing the Agent Definition. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
 - The LLM configuration 
 - Agent Configurations
 - The MCP Servers 
@@ -237,13 +237,13 @@ In the **Specification** phase, Joule Studio translates the PRD into a generated
     ![LLM, MCP](41.png)
 
 
-4. In the Evaluation section you can generate evaluation scenarios for this agent based on your intent. This may take a few minutes.
+5. In the **Evaluation** section you can generate evaluation scenarios for this agent based on your intent. This may take a few minutes.
 
     <!-- border -->
     ![Evaluation](43.png)
 
 
-Once Joule confirms the solution build is complete, proceed to Testing Overview to see the automated test results.
+Once Joule confirms the solution build is complete, proceed to **Testing Overview** to see the automated test results.
 
 
 
@@ -287,7 +287,7 @@ With all tests passed and the validation score confirmed, the **Budgeting Agent 
     <!-- border -->
     ![Deploy](72.png)
 
-Joule Studio packages the agent and deploys it to the **SAP managed runtime service** on BAIP. Once deployment completes, the `deploy_result.json` file in the `specification/` folder is populated with the live deployment details (endpoint URL, runtime ID, deployment timestamp).
+Joule Studio packages the agent and deploys it to the **SAP managed service** on BAIP. Once deployment completes, the `deploy_result.json` file in the `specification/` folder is populated with the live deployment details (endpoint URL, runtime ID, deployment timestamp).
 
 Your agent is now operational.
 
@@ -309,6 +309,6 @@ You have completed the end-to-end creation and deployment of a Budgeting Agent f
 - Reviewed and validated the intent document, including the reflected intent, problem statement, measurable goals, and a recommended architecture with a high percentage intent fit score
 - Evaluated a generated PRD, including product objectives, automation level, LLM boundaries, and operational guardrails
 - Executed an automated validation suite
-- Deployed the agent to the SAP managed runtime service
+- Deployed the agent to the SAP managed service
 
 The agent turns what was previously a multi-day, error-prone manual process into a **guided, auditable, human-approved workflow** - from anomaly detection to approved budget write-back - with no manual development required.

@@ -65,7 +65,7 @@ The manual coordination of closing cycle activities creates the following well-u
 - **Dependency tracking by memory** - Experienced controllers carry the dependency graph in their heads. When a task is blocked, the knock-on effects on downstream tasks must be mentally calculated- an error-prone process under time pressure.
 - **Reactive bottleneck discovery** - Blocked or at-risk tasks are typically identified only when a downstream task fails to start, rather than when the blocking condition first appears. By then, the window for remediation is narrower.
 - **No sequenced prioritisation** - When multiple tasks are actionable simultaneously, controllers must decide which to action first based on experience. There is no systematic evaluation of which sequence minimises close risk.
-- **Fragmented communication** - When tasks are blocked by other teams (accounts payable, asset accounting, intercompany counterparts), the controller must initiate manual follow-up across email, chat, and phone- with no consolidated escalation trail.
+- **Fragmented communication** - When tasks are blocked by other teams (accounts payable, asset accounting, intercompany counterparts), the controller must initiate manual follow-up across email, chat, and phone - with no consolidated escalation trail.
 - **Progress invisible to management** - Close cycle progress is not visible to Finance leadership without a manual status update from the controller, making real-time oversight difficult at the most critical point in the fiscal calendar.
 
 **Three categories of closing task state**
@@ -103,7 +103,7 @@ The **Intent** phase is the starting point of every agent in Joule Studio. You d
 
 1. Open **Joule Work** and navigate to **Joule Studio** by selecting **<>** in the left navigation panel.
 
-    ![Create solution](create_solution.png)
+    ![Create solution](bis1.1.png)
 
 2. Select **Create** to open the Create Agent dialog.
 
@@ -243,7 +243,7 @@ During the generation of the Solution, Joule Studio executes the specification a
 
 1. Ask Joule to build the solution by entering **execute specification/specification.md** in the chat. It will also understand more human readable commands like **Build the solution**.
 
-> If Joule seems to be inactive at some point during this phase, you could ask something like **What is the status?**. Joule would then tell you, and you would then command it to continue.
+> If Joule seems to be inactive at some point during this phase, you could ask something like **What is the status?** Joule would then tell you, and you would then command it to continue.
 
 2. Wait for the solution generation to complete.
 
@@ -299,12 +299,12 @@ Verify that all tests pass before proceeding to deployment.
 
 With all tests passed and the validation score confirmed, the solution is ready for deployment.
 
-1. Choose **Deploy**. Then confirm with Deploy again.
+1. Choose **Deploy**. Then confirm with **Deploy** again.
 
     ![Deploy](deploy.png)
 
 
-Joule Studio packages the agent and both MCP servers and deploys them to the **SAP managed runtime service** on BAIP. Once deployment completes, `deploy_result.json` in the `specification/` folder is populated with the live endpoint URL, runtime ID, and deployment timestamp.
+Joule Studio packages the agent and both MCP servers and deploys them to the **SAP managed service** on BAIP. Once deployment completes, `deploy_result.json` in the `specification/` folder is populated with the live endpoint URL, runtime ID, and deployment timestamp.
 
 Your agent is now operational and available to financial controllers.
 
@@ -318,7 +318,7 @@ Once deployed, agents are automatically discoverable through Joule. When users a
 
 **Monitoring the Agent**
 
-Once deployed, switch to the Manage tab in Joule Studio to access governance and monitoring. Here you can view runtime status, active deployments, usage metrics, and audit logs.
+Once deployed, switch to the **Manage** tab in Joule Studio to access governance and monitoring. Here you can view runtime status, active deployments, usage metrics, and audit logs.
 
 
 
@@ -327,12 +327,12 @@ Once deployed, switch to the Manage tab in Joule Studio to access governance and
 
 You have completed the end-to-end design and deployment of a Financial Closing Advisor Agent using SAP Joule Studio. In doing so, you have:
 
-- Identified the three closing task state categories (actionable, blocked, at-risk), the typical closing task sequence across preparation, operational close, valuation, intercompany, allocations, reporting, and period lock phases, and the six manual pain points- fragmented status view, dependency tracking by memory, reactive bottleneck discovery, unstructured prioritisation, fragmented escalation, and invisible progress- that the agent addresses
-- Written an intent statement that explicitly captures both the status monitoring objective and the sequenced recommendation with reasoning- ensuring Joule Studio generates a dependency graph engine rather than a simple status reader
+- Identified the three closing task state categories (actionable, blocked, at-risk), the typical closing task sequence across preparation, operational close, valuation, intercompany, allocations, reporting, and period lock phases, and the six manual pain points - fragmented status view, dependency tracking by memory, reactive bottleneck discovery, unstructured prioritisation, fragmented escalation, and invisible progress - that the agent addresses
+- Written an intent statement that explicitly captures both the status monitoring objective and the sequenced recommendation with reasoning - ensuring Joule Studio generates a dependency graph engine rather than a simple status reader
 - Reviewed and validated an Idea Board with five measurable goals spanning task retrieval, dependency evaluation, bottleneck identification, recommendation generation, and task execution support
 - Evaluated a generated PRD defining three product objectives, a hybrid automation level, explicit engine vs. LLM boundaries with the key principle that the LLM narrates but never independently assesses task state, and four operational guardrails including predecessor validation completeness and stale data protection
-- Inspected a generated file tree with two MCP servers- a read/write Closing Cockpit server scoped to controller-confirmed write operations and a read-only Financial Data server scoped to root cause analysis- with the configuration parameters that govern dependency evaluation, deadline thresholds, and escalation behaviour
+- Inspected a generated file tree with two MCP servers - a read/write Closing Cockpit server scoped to controller-confirmed write operations and a read-only Financial Data server scoped to root cause analysis- with the configuration parameters that govern dependency evaluation, deadline thresholds, and escalation behaviour
 - Reviewed a comprehensive test suite covering dependency traversal for linear and parallel chains, blocked and at-risk classification, root cause analysis, deadline escalation, confirmation gate enforcement, narration quality, and stale data detection
-- Deployed the agent to the SAP managed runtime service and understood its full production interaction sequence- from task list retrieval and dependency graph traversal through root cause analysis, prioritised recommendation, conversational follow-up, task confirmation, and continuous refresh
+- Deployed the agent to the SAP managed service and understood its full production interaction sequence - from task list retrieval and dependency graph traversal through root cause analysis, prioritised recommendation, conversational follow-up, task confirmation, and continuous refresh
 
 The agent transforms the financial close from a manually coordinated, memory-dependent, reactively managed process into a **continuously monitored, intelligently sequenced, and fully auditable workflow** - giving controllers a live action plan at every moment of the close cycle and giving Finance leadership the visibility they need without requiring manual status updates.
