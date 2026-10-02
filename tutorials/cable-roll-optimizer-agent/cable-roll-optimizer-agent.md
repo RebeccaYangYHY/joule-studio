@@ -80,23 +80,23 @@ In this step, you select Agent as the solution type and describe what you want t
 
 1. Open **Joule Work** and navigate to **Joule Studio** by selecting **Joule Studio** in the left navigation panel.
 
-2. Select **Create** to open the **Create Agent** dialog. If this is not your first project in Joule Studio, select **+ New** in the **Solutions** pane to access the dialog.
+2. Select **Create** to open the **Create Agent** dialog. If this is not your first project in Joule Studio, select **+ New** in the **Solutions** panel to access the dialog.
 
-![Open Joule Studio](010bis-create-agent.png)
+![Open Joule Studio](bis1.1.png)
 
-3. Enter the agent name:
+1. Enter the agent name:
 
     ```
     Cable Roll Optimizer
     ```
 
-4. Enter the following intent statement in the description field:
+2. Enter the following intent statement in the description field:
 
     ```
     Create an agent that should optimize cable roll selection for manufacturing work orders to minimize offcut waste. It reads work order requirements from SAP S/4HANA - including cable material, required length, and specification - and checks available batch stock across all storage locations. Based on this data, the agent applies an optimization engine to recommend the single roll or combination of rolls that fulfills the work order with minimum waste. Where local stock is insufficient, the agent identifies available rolls at other locations and recommends raising a stock transfer order accordingly. All recommendations are presented to the planner for review and approval before any SAP data is modified. The agent supports configuration for acceptable waste thresholds, location priority rules, and batch selection criteria such as expiry date and certificate status.
     ```
 
-5. Select **Quick Create** to skip clarifying questions and move directly to solution building. This adds *Fast Track* to the intent statement.
+3. Select **Quick Create** to skip clarifying questions and move directly to solution building. This adds *Fast Track* to the intent statement.
 
 > Even with **Quick Create**, Joule will still ask you to confirm Business Goals & Success Criteria.
 
@@ -226,20 +226,9 @@ assets/
 > **Why a deterministic engine rather than an LLM for optimisation?**
 > Roll selection is a well-defined mathematical problem (a variant of the one-dimensional cutting stock problem). A deterministic engine guarantees consistent, reproducible, and auditable results - the same work order and stock inputs always produce the same recommendation. An LLM cannot guarantee this. Joule Studio generates the deterministic engine from the PRD specification; the LLM is invoked only to narrate the engine's output.
 
-**The `specification/` folder**
-
-| File | Description |
-|------|-------------|
-| `intent.md` | Version-controlled representation of the original intent statement |
-| `product-requirements-document.md` | Full PRD as a Markdown file, linked to this solution |
-| `solution.yaml` | Technical solution definition: architecture, MCP server API bindings, waste threshold defaults, location priority configuration, and deployment settings |
-| `deploy_result.json` | Currently empty - populated with deployment details once the agent is deployed |
-
-> **Before proceeding:** Open `solution.yaml` and verify the following before triggering the Solution phase: the Production Order API binding points to your correct S/4HANA system and client; the Batch Stock API destination includes the storage location codes for all locations the agent should query; and the `waste_threshold_pct` parameter is set to the value agreed with your production planning team.
-
 ### Generate the Solution
 
-1. Once you the specification is ready, Joule Studio will proceed with the solution generation.
+1. Once the specification is ready, Joule Studio will proceed with the solution generation.
 
 In the **Solution Artifacts** phase, Joule Studio executes the specification and generates the complete, runnable solution: the optimisation engine, the MCP server integrations, the approval flow, and the STO creation logic - with no manual development required. Automatic tests will be created and executed.
 
@@ -289,7 +278,7 @@ Once Joule confirms the solution build is complete, proceed to **Testing Overvie
 
 > If Joule Studio reports a warning about the Batch Stock MCP server scope during generation, check that the storage location codes in `solution.yaml` match the location identifiers in your SAP S/4HANA plant structure. A mismatch here will cause the stock query to return empty results in testing.
 
-### Validate the Agent with Automated Tests
+### Validate the Agent
 
 The **Testing** phase is triggered automatically by Joule once the solution build is complete. It runs an automated validation suite derived from the specification - you do not need to initiate it manually. Wait for Joule to confirm that testing has finished before proceeding.
 
@@ -327,8 +316,6 @@ Joule Studio packages the agent and both MCP servers and deploys them to the **S
 
 Your agent is now operational and available to production planners.
 
-*Screenshot of successful deployment result (the deploy_result.json populated state, or the Manage tab showing the live deployment) with a caption to include*
-
 > If you are working in a team or want to version-control the generated code, Joule Studio supports GitHub sync. You can find this option under **Actions** in the top bar.
 
 > For governance reasons, deployment to production is not done from within Joule Studio.
@@ -340,8 +327,6 @@ Once deployed, agents are automatically discoverable through Joule. When users a
 **Monitoring the Agent**
 
 Once deployed, switch to the **Manage** tab in Joule Studio to access governance and monitoring. Here you can view runtime status, active deployments, usage metrics, and audit logs.
-
-*Screenshot of the Manage tab to include*
 
 ### Summary
 

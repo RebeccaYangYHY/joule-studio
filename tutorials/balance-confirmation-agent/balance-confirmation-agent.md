@@ -3,9 +3,9 @@ author_name: Samir Hamichi
 author_profile: https://github.com/shamichi-repo
 keywords: tutorial
 auto_validation: true
-time: 20
-tags: [software-product>joule, tutorial>beginner, tutorial>license]
-primary_tag: software-product>joule
+time: 30
+tags: [software-product>joule studio, joule, joule work, tutorial>beginner, tutorial>license]
+primary_tag: software-product>joule studio
 parser: v2
 ---
 
@@ -16,8 +16,6 @@ parser: v2
 - Access to **SAP Joule Studio** (SAP BTP tenant with Joule Studio enabled)
 - Access to an **SAP S/4HANA Cloud** system with live business partner, GL account, and accounting document data
 - Basic familiarity with Financial Accounting (FI) processes, in particular period-end and year-end closing activities
-- An SAP BTP subaccount with **SAP AI Core** and **SAP Generative AI Hub** entitlements
-
 
 ## You will learn
 
@@ -27,7 +25,7 @@ parser: v2
 - How the generated **Product Requirements Document (PRD)** defines automation level, LLM boundaries, and operational guardrails
 - How Joule Studio structures a solution using **separate MCP servers** per SAP OData API
 - How to interpret the results of an **automated validation suite** before deployment
-- How to deploy a production-ready agent to the SAP managed runtime service
+- How to deploy a production-ready agent to the SAP managed service
 
 
 ## Intro
@@ -55,7 +53,7 @@ In this tutorial, you follow **Selina**, a Finance professional at fictional com
 
 ### Understand the Business Challenge
 
-Before building the agent, it is important to understand the problem it must solve. This#describes the three types of balance confirmation request the Finance team handles, and the manual pain points the agent will eliminate.
+Before building the agent, it is important to understand the problem it must solve. This describes the three types of balance confirmation request the Finance team handles, and the manual pain points the agent will eliminate.
 
 **Three types of balance confirmation request**
 
@@ -80,17 +78,15 @@ The manual handling of these three request types creates the following well-unde
 > The agent you build in this tutorial eliminates all five pain points by automating ingestion, classification, reconciliation, and letter generation - with human review required only for discrepancy and dispute cases.
 
 
----
-
 ### Open Joule Studio and Define the Agent Intent
 
-Select the solution type you want to create, in this case Agent, and describe what you want to build. Joule will take your **intent** and translate it into a product requirements and technical specifications and finally implement the solution
+Select the solution type you want to create, in this case Agent, and describe what you want to build. Joule will take your **intent** and translate it into a product requirements and technical specifications and finally implement the solution.
 
-![Create a new agent](00-create-agent.png)
+1. Open **SAP Joule Work** and choose **Joule Studio** in the left navigation panel.
 
-1. Open **SAP Joule Work** and navigate to **Joule Studio** by choosing **Develop** in the left navigation panel.
+2. Select **Create** to open the **Create Agent** dialog. If this is not your first project in Joule Studio, select **+ New** in the **Solutions** panel to access the dialog.
 
-2. In the **Solutions** pane, select **+ New** and choose the option to create an agent. The Create Agent dialog opens.
+![Create a new agent](bis1.1.png)
 
 3. Complete the three fields in the dialog:
 
@@ -105,31 +101,49 @@ Select the solution type you want to create, in this case Agent, and describe wh
         appropriate, legally compliant response letters. The objective is to reduce processing time, minimize follow-up inquiries, and improve the
         quality and traceability of communication.
         ```
-    - Keep the **Quick Create** option checked. This will skip answering clarifying questions and directly move towards solution building. 
+    - Check **Quick Create** option. This will skip answering clarifying questions and directly move towards solution building. 
 
-4. Select **Create** to proceed.
+![Enter agent details](01-agent-prompt-creation.png)
 
 > **The most important input in the entire process is the intent statement.** Frame it around the *business outcome* you want to achieve, not the technical steps. Joule Studio derives the full technical design from your stated intent. If the generated Idea Board does not accurately reflect your goal, return here and refine the statement before continuing.
 
-![Enter agent details](01-agent-prompt-creation.png)
----
+4. Select **Create** to proceed.
 
-5. After submitting the prompt, Joule Studio starts to enrich it with the context.
+5. Confirm the Business Goals.
+
+Even when **Quick Create** is selected, Joule will collect the mandatory Business Goals & Success Criteria before completing the intent analysis. Answer any additional clarifying questions to the best of your knowledge - these inputs help Joule define the success metrics and tailor the generated PRD.
+
+![Business value](02-intent-clarification-questions.png)
+
+### Review the Intent
+
+1. After you submit the intent statement, Joule Studio generates an **intent.md** and presents a summary.
+
+2. Under the **Intent Summary** tab, you may review the complete summary. This shows how Joule Studio interpreted your input.
 
 ![Intent processing](01-intent-summary.png)
 
-6. When the intent is processed and enriched with the enterprise context, you may interact refining the business goals and other questions if any best to your knowledge. If not done automaticaly, you can ask to proceed with next phases of the *Intent Based Development* workflow.
+3. Verify that this matches your intent. If the summary is missing an element or describes a different scope, you can refine the intent statement and re-submit.
 
-![Generate solution](02-intent-clarification-questions.png)
+4. You can also find the **intent.md** file under **File tree** panel.
 
----
+5. Scroll down to the **Fit Gap Analysis** and see what Joule has identified.
 
-### Review the Product Requirements Document
+6. Then you can scroll down to the **Recommended Solution**. It describes a Python-based agent with a dedicated deterministic optimisation engine (cutting stock algorithm) separated from the LLM narration layer, and what the agent should be able to do.
+
+![Exploring the Intent File](025-intent-recommended-solution.png)
+
+### Product Requirements Document
 
 In the **Requirements** phase, Joule Studio generates a full **Product Requirements Document (PRD)**. The PRD formally captures what needs to be built, why it is needed, and how the agent is expected to behave. It serves as the contractual record between the business intent and the technical build.
 
+1. Wait until the requirements have been generated.
+
+2. Choose **Requirements** under **Solution Progress** panel. This opens the low-code view of the PRD.
 
 ![PRD](03-requirements.png)
+
+Check the document. It consists of several sections:
 
 **Product Purpose and Value Proposition**
 
@@ -172,24 +186,27 @@ Four operational guardrails are built into the agent:
 3. **API unavailability** triggers request queuing and a notification to the Finance team.
 4. **All outbound letters** must pass template validation before dispatch.
 
-The result you get from your experience may be different from this requirements example. Make sure, the requirements generated for your solution are meeting you expectation.  
+The result you get from your experience may be different from this requirements example. Make sure, the requirements generated for your solution are meeting your expectation.  
 
 Once you have reviewed the PRD and confirmed it accurately reflects your requirements, you can start the next phase of the project if it's not started automatically.
 
----
+**Solution Architecture**
+
+In the solution architecture section you will see the proposed components and the integration points. The main components are: the agent itself, dedicated MCP servers to access the SAP S/4HANA backend, and SAP AI Core to enable LLM access for the agent.
+
+![Architecture](037-solution-architecture.png)
 
 ### Inspect the Generated Specification
 
 In the **Specification** phase, Joule Studio translates the PRD into a structured set of technical artifacts - the complete blueprint from which the agent will be built. You do not write any of these artifacts manually; they are generated entirely from the intent and requirements you approved.
 
-The Specification view opens in **Code mode**. The left panel shows a file tree organized into two folders.
+Wait for the specification generation to complete.  Review the summary of what has been created so far by choosing **Specification** under **Solution Progress**:
 
 ![Inspect Specification](04-specifications.png)
 
-
 > **Architecture note:** Unlike agents that bundle all SAP API access inside a single component, the Balance Confirmation Agent uses **separate MCP servers** for each SAP OData API it consumes. This is the standard pattern when an agent needs to call multiple distinct SAP APIs - each server wraps one API and exposes it to the agent in a structured, LLM-interpretable format.
 
-** Example of the `assets/` folder**
+**Example of the `assets/` folder**
 
 ```
 assets/
@@ -205,92 +222,97 @@ assets/
 
 > **What is MCP?** MCP stands for **Model Context Protocol** - the standardized communication layer that allows an AI agent to interact with external systems such as SAP S/4HANA in a structured and secure way. Each MCP server wraps an individual SAP OData API and exposes it to the agent in a format the LLM can interpret and invoke. The three MCP servers here give the agent access to everything it needs to perform a full balance reconciliation without any direct database access.
 
-**The `specification/` folder**
-
-| File | Description |
-|------|-------------|
-| `intent.md` | A structured, version-controlled representation of your original intent statement |
-| `product-requirements-document.md` | The full PRD as a Markdown file, linked to this solution and available for review at any time |
-| `solution.yaml` | Technical solution definition: architecture, component dependencies, API bindings, and deployment configuration |
-| `deploy_result.json` | Currently empty - populated with deployment details once the agent is deployed |
-
-Select any file in the tree to inspect its contents in the right-hand panel. The entire specification is transparent and reviewable **before any deployment is triggered**.
-
-> **Best practice:** Review `solution.yaml` to confirm the OData API bindings point to your target SAP S/4HANA Cloud system and that the BTP destination names match your subaccount configuration.
-
----
-
 ### Generate the Solution
+
+1. Once the specification is ready, Joule Studio will proceed with the solution generation. Sometimes it may still wait for your input. In this case just type `execute specification` in the coding agent chat.
 
 In the **Solution** phase, Joule Studio executes the specification and generates the complete, runnable solution. The agent code, the three MCP server integrations, the reconciliation logic, and the letter generation components are all assembled from the blueprint defined in Phase 3. No manual development is required.
 
-![Generate solution button](05-solution-artifacts.png)
+2. Wait for the solution generation to complete before proceeding. You can find the agent under **Solution Artifacts**.
 
-This phase is largely automated. Joule Studio:
+![Generated solution](05-solution-artifacts.png)
 
-1. Scaffolds the full Python agent and the three MCP server packages based on the `assets/` tree.
-2. Wires up the SAP OData API bindings defined in `solution.yaml` for each MCP server.
-3. Configures the **SAP Generative AI Hub** connection for LLM-based classification and letter generation.
-4. Implements the four operational guardrails defined in the PRD.
-5. Instruments all agent actions with audit logging.
+During this phase, Joule Studio:
 
-Wait for the solution generation to complete before proceeding to the Testing phase.
+- Scaffolds the full Python agent and the MCP server packages based on the `assets/` tree.
+- Wires up the SAP OData API bindings defined in `solution.yaml` for each MCP server.
+- Configures the **SAP Generative AI Hub** connection for LLM-based classification and letter generation.
+- Implements the four operational guardrails defined in the PRD.
+- Instruments all agent actions with audit logging.
 
-> If Joule Studio reports any configuration warnings - for example, a missing OData API binding or an unresolvable BTP destination - resolve them in `solution.yaml` before continuing. A warning at this phase will propagate to test failures in Phase 5.
+**Reviewing the Agent Definition**
 
-**Evaluation scenarios for the Balance Confirmation Agent**
+3. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
+
+- The LLM configuration (e.g., sap/anthropic--claude-4.5-sonnet)
+- Agent Configurations: circuit-breaker threshold, thread TTL, summarization trigger
+- The MCP Servers that allow the agent to access Business Partner, GL Account and Accounting Document data from SAP S/4HANA
+
+![Agent configuration](100-agent-configuration-overview.png)
+
+4. In the **Evaluation** section you can generate evaluation scenarios for this agent based on your intent.
 
 ![Evaluation ](05-evaluation.png)
----
 
-### Validate the Agent with Automated Tests
+5. To see the generated Python code, move to the pro-code (File tree) view.
 
-Before the agent can be deployed, Joule Studio runs a full automated validation suite. The **Testing** phase shows a complete overview of all generated tests and their results. The **Deploy** button becomes active only after testing is complete.
+![Code](110-code-overview.png)
 
-**Testing Overview for the Balance Confirmation Agent**
+6. Select **MCP Servers** in the agent definition to see the servers that were configured automatically. Each one gives the agent access to a specific system:
 
-| Metric | Result |
-|--------|--------|
-| Total tests | 42 |
-| Passed | 42 |
-| Failed | 0 |
-| Validation score | 100% |
+- **Business Partner MCP server**: When a balance confirmation request arrives, the agent needs to know who is asking. This connector answers questions like:
+    - Is this a known business partner in our system?
+    - What are their contact details, company name, and address?
+    - Are they linked to a customer or vendor account?
+    
+    Without this, the agent couldn't verify the identity of the requesting company — a critical step before disclosing any financial data.
+- **GL Account Line Items MCP server**: Once the partner is identified, the agent needs to know what they owe or are owed. This connector retrieves:
+    - All open invoices and credit memos on the account
+    - Outstanding balances at a specific date (the confirmation date)
+    - Document references — so every figure in the letter is traceable back to a real posting in SAP
 
-The Validation by Artifact section confirms that the `balance-confirmation-agent` artifact (AI Agent type) achieved a score of **100%**.
+    This is the financial "source of truth" that the generated letter is based on.
 
-**What the 42 tests validate**
+![MCP](120-mcp-review.png)
 
-The test suite covers two complementary types of validation:
+No configuration is required: Joule Studio generated and wired up all servers from the specification.
 
-**Unit tests** verify the technical correctness of individual components:
+Once Joule confirms the solution build is complete, proceed to **Testing Overview** to see the automated test results.
 
-- The three SAP API connectors (Business Partner, GL Account Line Items, Accounting Documents) return data in the expected format
-- The reconciliation engine correctly compares balances across scenarios including partial payments and multiple open items
-- The letter generation function produces structurally valid output for each supported letter template
+> If Joule Studio reports a warning about the Batch Stock MCP server scope during generation, check that the storage location codes in `solution.yaml` match the location identifiers in your SAP S/4HANA plant structure. A mismatch here will cause the stock query to return empty results in testing.
 
-**AI-powered evaluations (evals)** assess whether the agent's outputs genuinely match the original intent:
+### Validate the Agent
 
-- The LLM classification correctly identifies full confirmations, partial discrepancies, and disputes across a representative set of test requests
-- Generated response letters are coherent, complete, and compliant with the required format and localization rules
+The **Testing** phase is triggered automatically by Joule once the solution build is complete. It runs an automated validation suite derived from the specification - you do not need to initiate it manually. Wait for Joule to confirm that testing has finished before proceeding.
 
-**What a 100% score means in practice**
+1. Once testing is complete, open **Overview** under **Testing** panel. Review the results and compare the test categories to your specification to verify all requirements have been validated.
 
-1. The reconciliation logic is correct across all test scenarios.
-2. The LLM classification is reliable for all three request types.
-3. The letter generation meets structural and compliance requirements.
-4. Human-review routing is triggered precisely when - and only when - the PRD specifies it should be.
+2. Verify that all tests pass before proceeding to deployment.
 
-> If any test fails, inspect the test log to identify which component produced the failure (ingestion, classification, reconciliation, letter generation, or routing). Review the relevant file in `assets/` or refine the intent statement and regenerate from Phase 1 if the issue is structural.
+![Verify Solution](090-tests-overview.png)
 
+> If any test fails, Joule will usually try to fix it automatically. If it gets stuck, you might converse with Joule to help fix the problem.
 
----
+3. Select the agent under **Preview** panel.
+
+4. In the chat field, enter a prompt that does not require live tool calls. For example: *Please process this balance confirmation request: Acme Corp GmbH, business partner 1000123, is requesting confirmation of their open balance as of today.* The agent will respond with a description of its capabilities without needing to connect to SAP S/4HANA.
+
+![Testing start](130-test-agent-locally.png)
+
+![Test results](130-local-test-results.png)
+
+You can do some further testing before deployment.
 
 ### Deploy the Agent to Production
 
-With all 42 tests passed and a 100% validation score, the **Automated Processing of Balance Confirmations** agent is ready for deployment.
+With all tests passed and the validation score confirmed, the **Automated Processing of Balance Confirmations** agent is ready for deployment.
 
-1. Select **Deploy** in the top right corner of the Testing screen.
-2. Joule Studio packages the agent and deploys it to the **SAP managed runtime service** - the shared infrastructure that handles compute, scaling, connectivity, and runtime management for all Joule Studio solutions. You do not need to provision or operate any infrastructure manually.
+1. Choose **Deploy**. Then confirm with **Deploy** again.
+
+![Deploy](140-deploy-solution.png)
+
+2. Joule Studio packages the agent and deploys it to the **SAP managed service** - the shared infrastructure that handles compute, scaling, connectivity, and runtime management for all Joule Studio solutions. You do not need to provision or operate any infrastructure manually.
+
 3. Once deployment completes, the `deploy_result.json` file in the `specification/` folder is populated with the live deployment details (endpoint URL, runtime ID, deployment timestamp).
 
 Your agent is now operational.
@@ -307,12 +329,13 @@ Once live, the agent processes incoming balance confirmation requests automatica
 6. **Routing decision**:
    - **Fully matching**: The response letter is dispatched automatically.
    - **Discrepancy or dispute**: The case is routed to a Finance team member for review and approval before the letter is sent.
-7. **Audit logging** - Every#- request receipt, classification decision, reconciliation result, routing decision, and letter dispatch - is logged for full audit traceability.
+7. **Audit logging** - Every request receipt, classification decision, reconciliation result, routing decision, and letter dispatch is logged for full audit traceability.
 
 > The Finance team at RaiLona can query the audit log at any time to retrieve a complete, linked record of every balance confirmation request from ingestion to response - demonstrating audit-readiness to auditors and compliance teams.
 
+**Monitoring the Agent**
 
----
+Once deployed, switch to the **Manage** tab in Joule Studio to access governance and monitoring. Here you can view runtime status, active deployments, usage metrics, and audit logs.
 
 ### Summary
 
@@ -324,6 +347,6 @@ You have completed the end-to-end creation and deployment of an Automated Proces
 - Evaluated a generated PRD, including product objectives, automation level, LLM vs. deterministic engine boundaries, read-only API access scope, and four operational guardrails
 - Inspected a generated file tree structured with **MCP servers** - for SAP OData APIs - and understood the role of each component
 - Interpreted a 42-test validation suite covering both unit tests and AI-powered evaluations, with a 100% pass rate
-- Deployed the agent to the SAP managed runtime service and understood its end-to-end production behaviour - from ingestion to automatic dispatch or human-review routing
+- Deployed the agent to the SAP managed service and understood its end-to-end production behaviour - from ingestion to automatic dispatch or human-review routing
 
 The agent turns what was previously a multi-step manual process - spanning multiple systems, tools, and document editors - into a **guided, auditable, compliant workflow** that Finance teams can rely on at every period-end and year-end close.
