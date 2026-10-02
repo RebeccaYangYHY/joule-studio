@@ -84,19 +84,19 @@ In this step, you select Agent as the solution type and describe what you want t
 
 ![Open Joule Studio](bis1.1.png)
 
-1. Enter the agent name:
+3. Enter the agent name:
 
     ```
     Cable Roll Optimizer
     ```
 
-2. Enter the following intent statement in the description field:
+4. Enter the following intent statement in the description field:
 
     ```
     Create an agent that should optimize cable roll selection for manufacturing work orders to minimize offcut waste. It reads work order requirements from SAP S/4HANA - including cable material, required length, and specification - and checks available batch stock across all storage locations. Based on this data, the agent applies an optimization engine to recommend the single roll or combination of rolls that fulfills the work order with minimum waste. Where local stock is insufficient, the agent identifies available rolls at other locations and recommends raising a stock transfer order accordingly. All recommendations are presented to the planner for review and approval before any SAP data is modified. The agent supports configuration for acceptable waste thresholds, location priority rules, and batch selection criteria such as expiry date and certificate status.
     ```
 
-3. Select **Quick Create** to skip clarifying questions and move directly to solution building. This adds *Fast Track* to the intent statement.
+5. Select **Quick Create** to skip clarifying questions and move directly to solution building. This adds *Fast Track* to the intent statement.
 
 > Even with **Quick Create**, Joule will still ask you to confirm Business Goals & Success Criteria.
 
@@ -234,7 +234,7 @@ In the **Solution Artifacts** phase, Joule Studio executes the specification and
 
 2. Wait for the solution generation to complete before proceeding. You can find the agent under **Solution Artifacts**.
 
-![Execute Specification](080-solution-fully-built.png)
+![Agent](080-solution-fully-built.png)
 
 During this phase, Joule Studio:
 
@@ -247,7 +247,7 @@ During this phase, Joule Studio:
 
 **Reviewing the Agent Definition**
 
-3. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
+1. Select the agent under **Solution Artifacts** to open its definition. In the low-code view you can see:
 
 - The LLM configuration (e.g., sap/anthropic--claude-4.5-sonnet)
 - Agent Configurations: circuit-breaker threshold, thread TTL, summarization trigger
